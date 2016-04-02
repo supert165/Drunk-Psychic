@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mNameField = (EditText) findViewById(R.id.nameEditText);
-
+        mStartButton=(Button)findViewById(R.id.startButton);
         //anonymous inner class as parameter
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void startTest(String name){
-        Intent intent= new Intent(this, MathTest.class);
+        Intent intent= new Intent(this, MathTestActivity.class);
         intent.putExtra("name",name);
         startActivity(intent);
     }
