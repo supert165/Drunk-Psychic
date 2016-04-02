@@ -1,13 +1,17 @@
 package com.example.android.drunkness_tester;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class InformationDataActivity extends AppCompatActivity{
@@ -18,6 +22,9 @@ public class InformationDataActivity extends AppCompatActivity{
     private EditText mNumberDrinks;
     private EditText mHeight;
     private ImageButton mTestButton;
+    private Spinner mSpinner;
+
+    ArrayAdapter<CharSequence> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,11 @@ public class InformationDataActivity extends AppCompatActivity{
         mNumberDrinks=(EditText)findViewById(R.id.numberDrinks);
         mHeight =(EditText) findViewById(R.id.heightInput);
         mTestButton=(ImageButton)findViewById(R.id.imageButton);
+
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        String[] items = new String[]{"1", "2", "three"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -46,9 +58,16 @@ public class InformationDataActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 int numDrinks = Integer.parseInt(mNumberDrinks.getText().toString());
-                int height = Integer.parseInt(mHeight.getText().toString());
+                double height = Double.valueOf(mHeight.getText().toString());
+                if (height > 2) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "You're not a mountain! Fix the height!";
+                    int duration = Toast.LENGTH_SHORT;
 
-                if(numDrinks>4 && height<1.6){
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else if(numDrinks>4 && height<1.6){
                     startTest();
                 }else{
                     startNotDrunkActivity();
