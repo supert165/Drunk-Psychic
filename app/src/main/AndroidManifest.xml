@@ -17,8 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MathTestActivity"
+            android:name=".InformationDataActivity"
             android:label="@string/title_activity_math_test" >
+        </activity>
+        <activity
+            android:name=".NotDrunkActivity"
+            android:label="@string/title_activity_not_drunk" >
+        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
