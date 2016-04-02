@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -35,6 +36,7 @@ public class InformationDataActivity extends AppCompatActivity{
         mNumberDrinks=(EditText)findViewById(R.id.numberDrinks);
         mGender =(EditText) findViewById(R.id.genderTextView);
         mTestButton=(ImageButton)findViewById(R.id.imageButton);
+        mTimeInHours=(EditText)findViewById(R.id.timeHours);
 
 
         if (savedInstanceState == null) {
@@ -56,17 +58,28 @@ public class InformationDataActivity extends AppCompatActivity{
 
                 int numDrinks = Integer.parseInt(mNumberDrinks.getText().toString());
                 int timeHours=Integer.parseInt(mTimeInHours.getText().toString());
+                Log.d(TAG, "time in hours is "+timeHours);
                 String gender = mGender.getText().toString().toLowerCase();
                 if (timeHours >= 23 || numDrinks>=15) {
                     Context context = getApplicationContext();
-                    CharSequence text = "You're not dead yet! Fix the time!";
+                    CharSequence text = "You're not dead yet! Fix the drinking time!";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-                else if(numDrinks/timeHours >=1.5){
-                    startTest();
+                else if(gender.charAt(0)=='m') {
+                            if ((numDrinks*1.0) / timeHours >= 1.5) {
+                                startTest();
+                            }
+                    if(gender.charAt(0)=='f'){
+                        if((numDrinks*1.0)/timeHours >=1.2){
+                            startTest();
+                        }
+                    }
+
+
+
                 }else{
                     startNotDrunkActivity();
                 }
