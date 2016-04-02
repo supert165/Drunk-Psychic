@@ -20,9 +20,10 @@ public class InformationDataActivity extends AppCompatActivity{
 
     private String mName;
     private EditText mNumberDrinks;
-    private EditText mHeight;
+    private EditText mGender;
     private ImageButton mTestButton;
-    private Spinner mSpinner;
+    private EditText mTimeInHours;
+
 
     ArrayAdapter<CharSequence> mAdapter;
 
@@ -32,13 +33,9 @@ public class InformationDataActivity extends AppCompatActivity{
         setContentView(R.layout.activity_math_test);
 
         mNumberDrinks=(EditText)findViewById(R.id.numberDrinks);
-        mHeight =(EditText) findViewById(R.id.heightInput);
+        mGender =(EditText) findViewById(R.id.genderTextView);
         mTestButton=(ImageButton)findViewById(R.id.imageButton);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"1", "2", "three"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -58,16 +55,17 @@ public class InformationDataActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 int numDrinks = Integer.parseInt(mNumberDrinks.getText().toString());
-                double height = Double.valueOf(mHeight.getText().toString());
-                if (height > 2) {
+                int timeHours=Integer.parseInt(mTimeInHours.getText().toString());
+                String gender = mGender.getText().toString().toLowerCase();
+                if (timeHours >= 23 || numDrinks>=15) {
                     Context context = getApplicationContext();
-                    CharSequence text = "You're not a mountain! Fix the height!";
+                    CharSequence text = "You're not dead yet! Fix the time!";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-                else if(numDrinks>4 && height<1.6){
+                else if(numDrinks/timeHours >=1.5){
                     startTest();
                 }else{
                     startNotDrunkActivity();
