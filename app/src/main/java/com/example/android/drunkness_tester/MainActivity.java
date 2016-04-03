@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mNameField;
     private Button mStartButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

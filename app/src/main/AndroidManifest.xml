@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.drunkness_tester" >
+    package="com.example.android.drunkness_tester">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +18,21 @@
         </activity>
         <activity
             android:name=".InformationDataActivity"
-            android:label="@string/title_activity_math_test" >
-        </activity>
+            android:label="@string/title_activity_math_test" />
         <activity
             android:name=".NotDrunkActivity"
-            android:label="@string/title_activity_not_drunk" >
-        </activity>
+            android:label="@string/title_activity_not_drunk" />
         <activity
             android:name=".TestActivity"
-            android:label="@string/title_activity_test" >
-        </activity>
+            android:label="@string/title_activity_test" />
+        <activity
+            android:name=".pebbleTestActivity"
+            android:label="@string/title_activity_pebble_test"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DrunkActivity"
+            android:label="@string/title_activity_drunk"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

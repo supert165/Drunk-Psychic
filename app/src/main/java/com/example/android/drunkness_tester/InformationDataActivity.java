@@ -24,6 +24,8 @@ public class InformationDataActivity extends AppCompatActivity{
     private EditText mGender;
     private ImageButton mTestButton;
     private EditText mTimeInHours;
+    private EditText mWeightText;
+
 
 
     ArrayAdapter<CharSequence> mAdapter;
@@ -37,6 +39,7 @@ public class InformationDataActivity extends AppCompatActivity{
         mGender =(EditText) findViewById(R.id.genderTextView);
         mTestButton=(ImageButton)findViewById(R.id.imageButton);
         mTimeInHours=(EditText)findViewById(R.id.timeHours);
+        mWeightText=(EditText)findViewById(R.id.weightText);
 
 
         if (savedInstanceState == null) {
@@ -56,35 +59,62 @@ public class InformationDataActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                int numDrinks = Integer.parseInt(mNumberDrinks.getText().toString());
-                int timeHours=Integer.parseInt(mTimeInHours.getText().toString());
-                Log.d(TAG, "time in hours is "+timeHours);
-                String gender = mGender.getText().toString().toLowerCase();
-                if (timeHours >= 23 || numDrinks>=15) {
+                if (mGender.getText() == null || mNumberDrinks.getText() == null || mTimeInHours.getText() == null ||
+                        mWeightText.getText() == null) {
                     Context context = getApplicationContext();
-                    CharSequence text = "You're not dead yet! Fix the drinking time!";
+                    CharSequence text = "Please write something!";
                     int duration = Toast.LENGTH_SHORT;
-
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                }
-                else if(gender.charAt(0)=='m') {
-                            if ((numDrinks*1.0) / timeHours >= 1.5) {
-                                startTest();
-                            }
-                    if(gender.charAt(0)=='f'){
-                        if((numDrinks*1.0)/timeHours >=1.2){
-                            startTest();
-                        }
+                } else {
+                    int numDrinks = Integer.parseInt(mNumberDrinks.getText().toString());
+                    double timeHours = Double.valueOf(mTimeInHours.getText().toString());
+                    int weight = Integer.parseInt(mWeightText.getText().toString());
+                    Log.d(TAG, "time in hours is " + timeHours);
+                    String gender = mGender.getText().toString().toLowerCase();
+
+                    if (gender.charAt(0) != 'm' && gender.charAt(0) != 'f' && gender.charAt(0) != 'o') {
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "You chose " + gender.charAt(0);
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else if (timeHours >= 23) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "You're not dead yet! Fix the drinking time!";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else if (numDrinks >= 15 && (numDrinks / timeHours) >= 4) {
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "You're not dead yet! Fix the number of drinks!";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                    } else if (weight >= 999 || weight <= 50) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "You're either a very precocious baby or a large tree. Either way, good luck drinking!";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else if ((gender.charAt(0) == 'm' || gender.charAt(0) == 'o')
+                            && ((numDrinks * 1.0) / timeHours >= 1.5)) {
+                        startTest();
+                    } else if (gender.charAt(0) == 'f' &&
+                            (numDrinks * 1.0) / timeHours >= 1.2) {
+                        startTest();
+                    } else {
+                        startNotDrunkActivity();
                     }
 
 
-
-                }else{
-                    startNotDrunkActivity();
                 }
-
-
             }
         });
 

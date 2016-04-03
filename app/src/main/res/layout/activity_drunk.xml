@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.android.drunkness_tester.DrunkActivity"
+    android:background="#ca8275"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOU&apos;RE DRUNK"
+        android:id="@+id/drunkText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:textColor="#90ffffff"
+        android:textSize="36dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/drunk_text"
+        android:id="@+id/textView3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="101dp"
+        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous Checking Account Balance: "
+        android:id="@+id/prevCheckAcc"
+        android:layout_below="@+id/drunkText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Checking Account Balance: "
+        android:id="@+id/curCheckAcc"
+        android:layout_below="@+id/prevCheckAcc"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous Savings Account Blance: "
+        android:id="@+id/prevSavAcc"
+        android:layout_below="@+id/curCheckAcc"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Savings Accunt Blance"
+        android:id="@+id/curSavAcc"
+        android:layout_below="@+id/prevSavAcc"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

@@ -8,5 +8,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_not_drunk">NotDrunkActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_launch_pebble">launchPebble</string>
+    <string name="title_activity_pebble_test">pebbleTestActivity</string>
+    <string name="title_activity_drunk">DrunkActivity</string>
+    <string name="drunk_text">You\'re pretty drunk. That\'s great. But to make sure that you don\'t regret your drunk-spending, we\'ve decided to lock out your checking account for tonight.</string>
 
 </resources>
