@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.telephony.SmsManager;
+import java.util.Random;
 
 public class DrunkActivity extends AppCompatActivity {
 
@@ -20,29 +23,34 @@ public class DrunkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drunk);
 
-        mPrevCheckingtAccount=(TextView)findViewById(R.id.prevCheckAcc);
-        mCurCheckingAccount=(TextView)findViewById(R.id.curCheckAcc);
-        mPrevSavingsAccount=(TextView)findViewById(R.id.prevSavAcc);
-        mCurSavingsAccount=(TextView)findViewById(R.id.curSavAcc);
+        mPrevCheckingtAccount=(TextView)findViewById(R.id.oldChecking);
+        mCurCheckingAccount=(TextView)findViewById(R.id.newChecking);
+        mPrevSavingsAccount=(TextView)findViewById(R.id.oldSavings);
+        mCurSavingsAccount=(TextView)findViewById(R.id.newSavings);
 
-        sendText();
+
+        Random random = new Random();
+
+        //mPrevCheckingtAccount.setText("$" + random.nextInt(600));
+
+        sendSMS("7607925644", "Help! I'm drunk and I need you to pick me up!");
 
 
     }
 
 
-    //using email code
-    public void sendText() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        String uriText = "mailto:" + Uri.encode("6156187905") +
-                "?subject=" + Uri.encode("I'm drunk, pick me up") +
-                "&body=" + Uri.encode("I'm drunk. Can you pick me up?");
-        Uri uri = Uri.parse(uriText);
 
-        intent.setData(uri);
 
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(Intent.createChooser(intent, "Send text..."));
+    public void sendSMS(String phoneNo, String msg){
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+            Toast.makeText(getApplicationContext(), "Message Sent",
+                    Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(),ex.getMessage().toString(),
+                    Toast.LENGTH_LONG).show();
+            ex.printStackTrace();
         }
     }
 

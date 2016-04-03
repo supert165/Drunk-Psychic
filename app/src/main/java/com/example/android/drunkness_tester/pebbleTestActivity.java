@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import java.util.Random;
 
 import com.example.android.drunkness_tester.R;
 import com.getpebble.android.kit.PebbleKit;
@@ -26,6 +27,7 @@ public class pebbleTestActivity extends AppCompatActivity {
     private TextView mInstructions;
     private Boolean mClicked = false;
     private Long result;
+    int money;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +52,12 @@ public class pebbleTestActivity extends AppCompatActivity {
                     //Up received?
                     result = dict.getInteger(0);
 
-                    if (result == 0) {
+                    if (result < 3) {
                         notDrunk();
                     }
 
                     else {
+                        percentage(result);
                         drunk();
                     }
 
@@ -65,6 +68,10 @@ public class pebbleTestActivity extends AppCompatActivity {
             PebbleKit.registerReceivedDataHandler(getApplicationContext(), mDataReceiver);
         }
 
+    }
+
+    public Long percentage(Long n) {
+        return n;
     }
 
     private void notDrunk() {
